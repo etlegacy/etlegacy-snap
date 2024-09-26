@@ -101,6 +101,12 @@ layout:
     bind: $SNAP/etc/fonts
   /usr/share/alsa:
     bind: $SNAP/usr/share/alsa
+  /usr/lib/x86_64-linux-gnu/libEGL.so:
+    symlink: $SNAP/usr/lib/x86_64-linux-gnu/libEGL.so
+  /usr/lib/x86_64-linux-gnu/libGL.so:
+    symlink: $SNAP/usr/lib/x86_64-linux-gnu/libGL.so
+  /usr/lib/x86_64-linux-gnu/libGLEW.so:
+    symlink: $SNAP/usr/lib/x86_64-linux-gnu/libGLEW.so
 
 parts:
   etl:
