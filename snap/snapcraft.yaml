@@ -31,7 +31,7 @@ apps:
       LD_LIBRARY_PATH: ${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}${SNAP}/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}:${SNAP}/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/pulseaudio
 
   etl-x11:
-    command: bin/run
+    command: bin/desktop-launch $SNAP/bin/run
     plugs:
       - opengl
       - x11
@@ -104,6 +104,8 @@ layout:
 
 parts:
   etl:
+    after:
+      - desktop-glib-only
     plugin: cmake
     cmake-parameters:
       - -DCROSS_COMPILE32=OFF
@@ -168,6 +170,15 @@ parts:
       - wget
       - curl
       - unzip
+
+  desktop-glib-only:
+    source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
+    source-subdir: glib-only
+    plugin: make
+    build-packages:
+      - libglib2.0-dev
+    stage-packages:
+      - libglib2.0-bin
 
   # Some utility scripts for setting up the Wayland environment
   setup:
